@@ -145,7 +145,6 @@ public final class ClassUtil {
 
                 addClass(classSet, subPackagePath, subPackageName);
 
-
             }
         }
 
