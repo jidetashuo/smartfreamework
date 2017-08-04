@@ -14,7 +14,7 @@ import java.util.jar.JarFile;
 /**
  * Created by wm on 2017/8/3.
  */
-public class ClassUtil {
+public final class ClassUtil {
     /**
      * 获取类加载器
      *
