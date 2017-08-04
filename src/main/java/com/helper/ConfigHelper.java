@@ -1,4 +1,7 @@
-package com.common;
+package com.helper;
+
+import com.common.ConfigConstant;
+import com.common.PropsUtil;
 
 import java.util.Properties;
 
