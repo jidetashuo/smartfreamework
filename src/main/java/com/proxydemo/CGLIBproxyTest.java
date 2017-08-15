@@ -1,4 +1,4 @@
-package com.proxy;
+package com.proxydemo;
 
 /**
  * Created by wm on 2017/8/15.
