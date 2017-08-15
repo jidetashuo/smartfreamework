@@ -1,7 +1,9 @@
 package com.helper;
 
 import com.annotation.Aspect;
+import com.annotation.Service;
 import com.aop.aspect.AspectProxy;
+import com.aop.aspect.TransactionProxy;
 import com.aop.proxy.Proxy;
 import com.aop.proxy.ProxyManager;
 
@@ -21,7 +23,6 @@ public class AopHelper {
             Map<Class<?>, Set<Class<?>>> proxyMap = createProxyMap();
             //目标类和代理对象list的集合
             Map<Class<?>, List<Proxy>> targetMap = createTargetMap(proxyMap);
-
 
 
             for (Map.Entry<Class<?>, List<Proxy>> proEntrty : targetMap.entrySet()) {
@@ -68,16 +69,40 @@ public class AopHelper {
      */
     public static Map<Class<?>, Set<Class<?>>> createProxyMap() throws Exception {
         Map<Class<?>, Set<Class<?>>> proxyMap = new HashMap<Class<?>, Set<Class<?>>>();
-            Set<Class<?>> proxyClassSet = ClassHelper.getClassSetBysuper(AspectProxy.class);
-            for (Class<?> cls : proxyClassSet) {
-                if (cls.isAnnotationPresent(Aspect.class)) {
-                    Aspect aspect = cls.getAnnotation(Aspect.class);
-                    Set<Class<?>> tarClassSet = createTargetClassSet(aspect);
-                    proxyMap.put(cls, tarClassSet);
-                }
-        }
+        addAspectProxy(proxyMap);
+        addTransationProxy(proxyMap);
         return proxyMap;
     }
+
+
+    /**
+     * 设置代理类和目标类的对应map
+     *
+     * @param proxyMap
+     * @throws Exception
+     */
+
+    private static void addAspectProxy(Map<Class<?>, Set<Class<?>>> proxyMap) throws Exception {
+
+        Set<Class<?>> proxyClassSet = ClassHelper.getClassSetBysuper(AspectProxy.class);
+        for (Class<?> cls : proxyClassSet) {
+            if (cls.isAnnotationPresent(Aspect.class)) {
+                Aspect aspect = cls.getAnnotation(Aspect.class);
+                Set<Class<?>> tarClassSet = createTargetClassSet(aspect);
+                proxyMap.put(cls, tarClassSet);
+            }
+        }
+    }
+
+    /**
+     * @param proxyMap
+     * @throws Exception
+     */
+    private static void addTransationProxy(Map<Class<?>, Set<Class<?>>> proxyMap) throws Exception {
+        Set<Class<?>> proxyClassSet = ClassHelper.getClassSetByAnnotation(Service.class);
+        proxyMap.put(TransactionProxy.class, proxyClassSet);
+    }
+
 
     /**
      * 获取目标类与代理对象集合之间的关系
