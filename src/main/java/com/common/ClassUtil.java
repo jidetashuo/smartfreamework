@@ -1,5 +1,6 @@
 package com.common;
 
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -15,6 +16,8 @@ import java.util.jar.JarFile;
  * Created by wm on 2017/8/3.
  */
 public final class ClassUtil {
+
+
     /**
      * 获取类加载器
      *
@@ -36,8 +39,10 @@ public final class ClassUtil {
         Class<?> cls = null;
 
         try {
+
             cls = Class.forName(className, isInitialized, getClassLoader());
         } catch (ClassNotFoundException e) {
+
             e.printStackTrace();
         }
 
@@ -67,6 +72,7 @@ public final class ClassUtil {
                         //TODO   ????
                         String packagePath = url.getPath().replaceAll("%20", "");
 
+                        packagePath = packagePath.substring(0, packagePath.length() - 1);
                         addClass(classSet, packagePath, packageName);
 
                     } else if (protool.equals("jar")) {
@@ -140,7 +146,7 @@ public final class ClassUtil {
                 String subPackageName = fileName;
                 if (packageName != null && !packageName.equals("")) {
 
-                    subPackageName = packageName + "/" + subPackageName;
+                    subPackageName = packageName + "." + subPackageName;
                 }
 
                 addClass(classSet, subPackagePath, subPackageName);
@@ -152,6 +158,7 @@ public final class ClassUtil {
     }
 
     private static void doAddClass(Set<Class<?>> classSet, String className) {
+        System.out.println("classSet:"+className);
         Class<?> cls = loadClass(className, false);
         classSet.add(cls);
 

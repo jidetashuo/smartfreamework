@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public final class IocHelper {
     static {
-
+        System.out.println("IocHelper static init=======");
         Map<Class<?>, Object> beanMap = BeanHelper.getBeanMap();
 
         if (!MapUtils.isEmpty(beanMap)) {

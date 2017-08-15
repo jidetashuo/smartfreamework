@@ -14,7 +14,7 @@ public final class ClassHelper {
     private static final Set<Class<?>> CLASS_SET;
 
     static {
-
+        System.out.println("ClassHelper static init=======");
         String basepackage = ConfigHelper.getBasePackage();
         CLASS_SET = ClassUtil.getClassSet(basepackage);
     }

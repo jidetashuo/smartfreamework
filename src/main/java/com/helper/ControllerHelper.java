@@ -20,7 +20,7 @@ public final class ControllerHelper {
     private static final Map<Request, Handler> ACTION_MAP = new HashMap<Request, Handler>();
 
     static {
-
+        System.out.println("ControllerHelper static init=======");
         //获取所有的controller类
 
         Set<Class<?>> controllerClassSet = ClassHelper.getControllerClassSet();
@@ -78,5 +78,7 @@ public final class ControllerHelper {
 
 
     }
+
+
 
 }

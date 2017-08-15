@@ -1,5 +1,8 @@
 package com.common;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 /**
  * Created by wm on 2017/8/4.
  */
@@ -27,5 +30,15 @@ public class Request {
 
     public void setRequestPath(String requestPath) {
         this.requestPath = requestPath;
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this,obj);
     }
 }

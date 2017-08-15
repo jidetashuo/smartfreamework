@@ -18,4 +18,15 @@ public class ConfigHelper {
 
     }
 
+    public static String getJspPath() {
+
+        return PropsUtil.getString(CONFIG_PRO, ConfigConstant.JSP_PATH);
+    }
+
+    public static String getAppAssetPath() {
+
+        return PropsUtil.getString(CONFIG_PRO, ConfigConstant.ASSET_PATH);
+    }
+
+
 }

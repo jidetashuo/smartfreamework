@@ -15,7 +15,7 @@ public class BeanHelper {
     private static final Map<Class<?>, Object> BEAN_MAP = new HashMap<Class<?>, Object>();
 
     static {
-
+        System.out.println("BeanHelper static init=======");
         Set<Class<?>> beanClassSet = ClassHelper.getBeanClassSet();
 
         for (Class<?> cls : beanClassSet) {

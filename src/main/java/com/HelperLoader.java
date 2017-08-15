@@ -13,6 +13,7 @@ import com.helper.IocHelper;
 public class HelperLoader {
     public static void init() {
 
+
         Class<?>[] classList = {
                 ClassHelper.class,
                 BeanHelper.class,
@@ -20,10 +21,16 @@ public class HelperLoader {
                 ControllerHelper.class
         };
 
-        for (Class<?> cls : classList)
+        try {
+            for (Class<?> cls : classList)
 
-        {
-            ClassUtil.loadClass(cls.getName(), false);
+            {
+                System.out.println("cls.getName():"+cls.getName());
+                ClassUtil.loadClass(cls.getName(), true);
+            }
+            System.out.println("初始化成功。。。。。");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
