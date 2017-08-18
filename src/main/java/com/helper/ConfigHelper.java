@@ -28,5 +28,10 @@ public class ConfigHelper {
         return PropsUtil.getString(CONFIG_PRO, ConfigConstant.ASSET_PATH);
     }
 
+    public static String getString(String key) {
+
+        return PropsUtil.getString(CONFIG_PRO, key);
+    }
+
 
 }

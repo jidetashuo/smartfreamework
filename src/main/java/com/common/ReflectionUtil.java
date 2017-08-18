@@ -43,9 +43,11 @@ public class ReflectionUtil {
         Object result = null;
         method.setAccessible(true);
 
-        String[] args22=new String[]{};
+
+
         try {
-            result = method.invoke(obj, args22);
+            result = method.invoke(obj, args);
+
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

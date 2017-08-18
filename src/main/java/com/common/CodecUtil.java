@@ -1,5 +1,7 @@
 package com.common;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -42,5 +44,18 @@ public final class CodecUtil {
         }
 
         return target;
+    }
+
+    /**
+     * md5 加密
+     *
+     * @param source
+     * @return
+     */
+
+
+    public static String md5(String source) {
+
+        return DigestUtils.md5Hex(source);
     }
 }

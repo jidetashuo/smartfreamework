@@ -1,5 +1,6 @@
 package com.helper;
 
+import com.annotation.Component;
 import com.annotation.Controller;
 import com.annotation.Service;
 import com.common.ClassUtil;
@@ -77,8 +78,7 @@ public final class ClassHelper {
     public static Set<Class<?>> getBeanClassSet() {
 
         Set<Class<?>> classSet = new HashSet<Class<?>>();
-        classSet.addAll(getControllerClassSet());
-        classSet.addAll(getServiceClassSet());
+        classSet.addAll(getClassSetByAnnotation(Component.class,classSet));
         return classSet;
 
     }
@@ -105,21 +105,39 @@ public final class ClassHelper {
         return classSet;
     }
 
+    public static Set<Class<?>> getClassSetByAnnotation(Class<? extends  Annotation> annotationClass ){
+        Set<Class<?>> classSet = new HashSet<Class<?>>();
+        for (Class<?> cls : CLASS_SET) {
+            if (cls.isAnnotationPresent(annotationClass)) {
+                classSet.add(cls);
+
+            }
+        }
+
+        return classSet;
+
+
+    }
+
+
     /**
      * 获取某注解的所有类
      *
      * @param annotationClass
      * @return
      */
-    public static Set<Class<?>> getClassSetByAnnotation(Class<? extends Annotation> annotationClass) {
-
-        Set<Class<?>> classSet = new HashSet<Class<?>>();
+    public static Set<Class<?>> getClassSetByAnnotation(Class<?> annotationClass,Set<Class<?>> classSet) {
 
         for (Class<?> cls : CLASS_SET) {
 
-            if (cls.isAnnotationPresent(annotationClass)) {
+            if (cls.isAnnotationPresent((Class<? extends Annotation>) annotationClass)) {
 
-                classSet.add(cls);
+                if(cls.isAnnotation()){
+                    getClassSetByAnnotation(cls,classSet);
+
+                }else{
+                    classSet.add(cls);
+                }
             }
         }
 

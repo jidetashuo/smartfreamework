@@ -16,9 +16,9 @@ public class TransactionProxy implements Proxy {
         if (method.isAnnotationPresent(Transaction.class)) {
 
             System.out.println("模拟事物切面start================");
-            result = proxyChain.doProxyChain();
-            System.out.println("模拟事物切面end================");
-        }
+        result = proxyChain.doProxyChain();
+        System.out.println("模拟事物切面end================");
+    }
 
         return result;
     }
